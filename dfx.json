@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "rust-airbnb-backend": {
+      "candid": "src/rust-airbnb-backend/rust-airbnb-backend.did",
+      "package": "rust-airbnb-backend",
+      "type": "rust"
+    },
+    "rust-airbnb-frontend": {
+      "dependencies": [
+        "rust-airbnb-backend"
+      ],
+      "source": [
+        "src/rust-airbnb-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "rust-airbnb-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
