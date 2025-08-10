@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    
     "setup": "npm i && dfx canister create rust-airbnb-backend && dfx generate rust-airbnb-backend && dfx deploy",
     "start": "vite --port 3000",
     "prebuild": "dfx generate",

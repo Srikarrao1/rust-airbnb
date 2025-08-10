@@ -1,3 +1,44 @@
-service : {
-    "greet": (text) -> (text) query;
+type Listing = record {
+  id : nat64;
+  title : text;
+  price_per_night : nat64;
+  description : text;
+  amenities : vec text;
+  location : text;
+  photos : vec text;
+};
+type Reservation = record {
+  id : nat64;
+  created_at : nat64;
+  user_id : text;
+  check_out : nat64;
+  check_in : nat64;
+  listing_id : nat64;
+  guests : nat32;
+};
+type Result = variant { Ok : Reservation; Err : text };
+type User = record { id : text; password : text; name : text };
+service : () -> {
+  add_listing : (Listing) -> ();
+  // ----------------------
+  // Sample Data
+  // ----------------------
+  add_sample_listings : () -> ();
+  cancel_reservation : (nat64, text) -> (bool);
+  // ----------------------
+  // Reservation APIs
+  // ----------------------
+  check_availability : (nat64, nat64, nat64) -> (bool) query;
+  // ----------------------
+  // Listing APIs
+  // ----------------------
+  get_listings : (nat64, nat64) -> (vec Listing) query;
+  get_listings_count : () -> (nat64) query;
+  get_reservations : (text) -> (vec Reservation) query;
+  login : (text, text) -> (bool) query;
+  reserve : (text, nat64, nat64, nat64, nat32) -> (Result);
+  // ----------------------
+  // User APIs
+  // ----------------------
+  signup : (User) -> (bool);
 }
